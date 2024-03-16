@@ -1,0 +1,31 @@
+.request-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.request-table th, .request-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.request-table th {
+    background-color: #f2f2f2;
+}
+
+.request-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.request-table button {
+    padding: 6px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.request-table button:hover {
+    background-color: #45a049;
+}
