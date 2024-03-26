@@ -7,13 +7,12 @@ import Register from "./Routes/Auth/Register.js";
 import RegisterProvide from "./Redirects/RegisterProvide.js";
 import AdminProvider from "./Redirects/AdminProvider.js";
 import Request from "./Routes/Request.js";
-// import AddPatient from "./Components/Forms/AddPatient.js";
-//import NewPatient from "./Components/Forms/NewPatient.js";
+
 import PlaceOrder from "./Components/Forms/placeorder.js"
 import ViewOrg from "./Routes/ViewOrg.js";
-//import AddPatient from "./Components/Forms/AddPatient.js"
 
-import Patient from "./Routes/Patient.js"
+
+
 import OrderSearch from "./Routes/OrderSearch.js";
 import OrderSearchManu from "./Routes/OrderSearchManu.js";
 import ViewOrdersFarmer from "./Routes/ViewOrderFarmer.js";
