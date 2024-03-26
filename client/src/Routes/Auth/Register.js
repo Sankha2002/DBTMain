@@ -2,11 +2,28 @@ import React, { useState } from "react";
 import { userAdd } from "../../store/actions";
 import useValidate from "../../Hooks/useValidate";
 import { connect } from "react-redux";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 //import Web3 from "web3";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBlsn1YfQ_KNilp9dA2LG2g3ARPqH55Do0",
+    authDomain: "dbttest-ce8bc.firebaseapp.com",
+    projectId: "dbttest-ce8bc",
+    storageBucket: "dbttest-ce8bc.appspot.com",
+    messagingSenderId: "92632875625",
+    appId: "1:92632875625:web:d824d71da18fc796e298f8"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
 
 const Register = ({ web3, addUser, orgContract }) => {
 
     const Web3 = require('web3');
+    const [mobile, setMobile] = useState('');
+  const [otp, setOtp] = useState('');
     const [selectedValue, setSelectedValue] = useState('');
 
     const [formData, formValidator] = useValidate({

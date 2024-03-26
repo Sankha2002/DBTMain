@@ -48,9 +48,9 @@ const Home = () => {
             <Row>
               <Column>
                 <Heading style={{fontSize:"large"}}>Despription</Heading>
-                <FooterLink href="https://en.wikipedia.org/wiki/Health_system">DBT</FooterLink>
+                <FooterLink href="https://www.fert.nic.in/dbt">DBT</FooterLink>
                 <FooterLink href="https://www.mckinsey.com/featured-insights/mckinsey-explainers/what-is-blockchain">Blockchain</FooterLink>
-                <FooterLink href="https://openledger.info/insights/blockchain-healthcare-use-cases/">Use cases</FooterLink>
+                <FooterLink href="https://farmer.gov.in/iaof/iaof_admin/Data/323_DBT%20in%20Fertilizers%20in%20India-%20Ms.%20Kavitha%20Gotru.pdf">Use cases</FooterLink>
               </Column>
               <Column>
                 <Heading style={{fontSize:"large"}}>Contact Us</Heading>
@@ -78,12 +78,12 @@ const Home = () => {
                 </Column>
               <Column>
                 <Heading style={{fontSize:"large"}}>LinkedIn</Heading>
-                <FooterLink href="https://www.linkedin.com/in/iamabhishek2000/">
+                <FooterLink href="https://www.linkedin.com/in/sankhadip-paul-581621255/">
                     <span style={{ marginLeft: "5px" }}>
                       Sankhadip Paul
                     </span>
                 </FooterLink>
-                <FooterLink href="https://www.linkedin.com/in/sk-mainul-islam-4236911b9/">
+                <FooterLink href="https://in.linkedin.com/in/aditya-sarkar-94a379179">
                     <span style={{ marginLeft: "5px" }}>
                       Aditya Sarkar
                     </span>

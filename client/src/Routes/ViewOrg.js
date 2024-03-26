@@ -6,6 +6,7 @@ import { Grid } from "gridjs-react";
 import "gridjs/dist/theme/mermaid.css";
 const Patient = ({ orgContract, web3 }) => {
    // const [data, setData] = useState(null);
+   const Web3 = require('web3');
     const [buyerData, setBuyerData] = useState(null);
     const [sellerData, setSellerData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -14,7 +15,7 @@ const Patient = ({ orgContract, web3 }) => {
 
     useEffect(() => {
         const buyer=[];
-        const seller=[];
+        let seller=[];
 
         (async () => {
             let accounts = await window.ethereum.request({
@@ -29,6 +30,10 @@ const Patient = ({ orgContract, web3 }) => {
                     .getVerifiedSellers()
                     .call({ from: accounts[0] });
 
+                    buyerorgs = convertHexToAsciiBuyers(buyerorgs);
+                    sellerorgs = convertHexToAsciiSeller(sellerorgs);
+                    console.log({sellerorgs})
+
                     for(var i=0,j=0;i<buyerorgs.length;i++,j++)
                     {
                         if(buyerorgs[i]['role']==="buyer")
@@ -39,7 +44,7 @@ const Patient = ({ orgContract, web3 }) => {
 
                     for(var i=0,j=0;i<sellerorgs.length;i++,j++)
                     {
-                        if(sellerorgs[i]['role']==="seller")
+                        //if(sellerorgs[i]['role']==="seller")
                         {
                             seller.push(sellerorgs[i]['name'],sellerorgs[i]['email'],sellerorgs[i]['addr'],sellerorgs[i]['con'],sellerorgs[i]['gstno'],sellerorgs[i]['typ'])
                         }
@@ -50,8 +55,8 @@ const Patient = ({ orgContract, web3 }) => {
                     const organization1=[]
                     while(buyer.length) organization1.push(buyer.splice(0,8))
                     setBuyerData(organization1);
-
-                    const organization2=[]
+                    console.log({seller})
+                    let organization2=[]
                     while(seller.length) organization2.push(seller.splice(0,6))
                     setSellerData(organization2);
                     
@@ -64,6 +69,44 @@ const Patient = ({ orgContract, web3 }) => {
 
         return () => {};
     }, [orgContract]);
+
+    const convertHexToAsciiBuyers = (orgs) => {
+        let data = []
+        orgs.map((org) => {
+            data.push({
+                id: org.id,
+                name: Web3.utils.hexToAscii(org["name"]),
+                aadharno: Web3.utils.hexToAscii(org["aadharno"]),
+                addr: Web3.utils.hexToAscii(org["addr"]),
+                con: Web3.utils.hexToAscii(org["con"]),
+                role: Web3.utils.hexToAscii(org["role"]),
+                typ: Web3.utils.hexToAscii(org["typ"]),
+                landdetails: Web3.utils.hexToAscii(org["landdetails"]),
+                fertilizersused: Web3.utils.hexToAscii(org["fertilizersused"]),
+                noofcrops: Web3.utils.hexToAscii(org["noofcrops"])
+            })
+        });
+        //console.log({data});
+        return data;
+    };
+
+    const convertHexToAsciiSeller = (orgs) => {
+        let data = []
+        orgs.map((org) => {
+            data.push({
+                id: org.id,
+                name: Web3.utils.hexToAscii(org["name"]),
+                email: Web3.utils.hexToAscii(org["email"]),
+                con: Web3.utils.hexToAscii(org["con"]),
+                gstno: Web3.utils.hexToAscii(org["gstno"]),
+                addr: Web3.utils.hexToAscii(org["addr"]),
+                role: Web3.utils.hexToAscii(org["role"]),
+                typ: Web3.utils.hexToAscii(org["typ"])
+            })
+        });
+        return data;
+    };
+
     return (
         <>
             <Navbar />

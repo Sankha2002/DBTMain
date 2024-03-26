@@ -53,7 +53,9 @@ contract Org {
         bytes product;
         uint256 quantity;
         uint256 price;
-        //bool fulfilled;
+        bytes  gstno;
+        bytes Mgstno;
+        bool fulfilled;
     }
 
     //Variables for the objects
@@ -70,6 +72,7 @@ contract Org {
     event onFarmerRegistration(Farmer _farmervalue);
     event onRegisterSeller(Seller _sellervalue);
     event onAddOrders(Order _order);
+    event onAddOrdersWholeseller(Order _order);
     event VerifyBuyers(string _message);
     event VerifySellers(string _message);
 
@@ -155,7 +158,8 @@ contract Org {
         //address buyerId;
         bytes memory product,
         uint256 quantity,
-        uint256 price //bool fulfilled
+        uint256 price, 
+        bytes memory gstno
     ) public {
         Seller memory seller = getSeller();
 
@@ -168,7 +172,9 @@ contract Org {
         require(farmerIdx >= 0 , "Farmer not found");
 
         require(farmers[uint256(farmerIdx)].orderCount < MAX_ORDER_COUNT, "You have exceeded your order limit");
-
+        //cannot place more than one order at same day
+        int256 OrderAtSameDate=NoOrderAtSameDate(orderId);
+        require(OrderAtSameDate >= 0 , "Cannot place multiple order at same day!!");
         Order memory order = Order({
             orderId: orderId,
             buyername: buyername,
@@ -176,8 +182,10 @@ contract Org {
             order_date: order_date,
             product: product,
             quantity: quantity,
-            price: price
-            //fulfilled:fulfilled
+            price: price,
+            gstno: gstno,
+            Mgstno: "0x30",
+            fulfilled:false
         });
         orders.push(order);
 
@@ -189,6 +197,38 @@ contract Org {
     function getOrders() public view returns (Order[] memory) {
         return orders;
     }
+    //Function to forward order from wholeseller to manufacturer
+    function forwardToManuFacturer(
+        bytes memory orderId,
+        bytes memory manufacturerGstno
+    ) public{
+        Seller memory seller = getSeller();
+
+        require(seller.id != address(0), "Only registered sellers can place orders");
+
+        require(seller.verified, "Only verified sellers can place orders");
+        
+        int256 orderIdx = getOrderIdxByOrderId(orderId);
+
+        require(orderIdx >= 0 , "Invalid Order Id");
+        orders[uint256(orderIdx)].Mgstno=manufacturerGstno;
+    }
+
+    //Function to Fulfill/accept order at Manufacturer end 
+    function fulfillOrderManufacturer(bytes memory orderId) public {
+
+        Seller memory seller = getSeller();
+
+        require(seller.id != address(0), "Only registered sellers can place orders");
+
+        require(seller.verified, "Only verified sellers can place orders");
+       
+        int256 orderIdx = getOrderIdxByOrderId(orderId);
+
+        require(orderIdx >= 0 , "Invalid Order Id");
+        orders[uint256(orderIdx)].fulfilled=true;
+    }
+
 
     function getAdmin() public view returns (Admin memory) {
         return adminval;
@@ -219,7 +259,7 @@ contract Org {
         uint256 fidx = 0;
         for (uint256 i = 0; i < farmers.length; i++) {
             if (!farmers[i].verified) {
-                unverifiedFarmer[fidx] = farmers[i];
+                unverifiedFarmer[fidx++] = farmers[i];
             }
         }
         return unverifiedFarmer;
@@ -230,7 +270,7 @@ contract Org {
         uint256 sidx = 0;
         for (uint256 i = 0; i < sellers.length; i++) {
             if (!sellers[i].verified) {
-                unverifiedSellers[sidx] = sellers[i];
+                unverifiedSellers[sidx++] = sellers[i];
             }
         }
         return unverifiedSellers;
@@ -242,7 +282,7 @@ contract Org {
         uint256 fidx = 0;
         for (uint256 i = 0; i < farmers.length; i++) {
             if (farmers[i].verified) {
-                verifiedFarmer[fidx] = farmers[i];
+                verifiedFarmer[fidx++] = farmers[i];
             }
         }
         return verifiedFarmer;
@@ -253,7 +293,7 @@ contract Org {
         uint256 sidx = 0;
         for (uint256 i = 0; i < sellers.length; i++) {
             if (sellers[i].verified) {
-                verifiedSellers[sidx] = sellers[i];
+                verifiedSellers[sidx++] = sellers[i];
             }
         }
         return verifiedSellers;
@@ -295,7 +335,30 @@ contract Org {
         }
         return -1;
     }
-    
+    function getOrderIdxByOrderId(bytes memory orderId) private view returns(int256){
+        bytes32 oid=keccak256(orderId);
+        for (uint256 i = 0; i < orders.length; i++) {
+            if (oid == keccak256(orders[i].orderId)) {
+               return int256(i);
+            }
+        }
+        return -1;
+    }
+ 
+    /*Function for cannot place more than one order at same day,if oid matches with orderid
+    from orders array will return -1 else will return index*/
+    function NoOrderAtSameDate(bytes memory orderId) private view returns(int256){
+        bytes32 oid=keccak256(orderId);
+        uint256 i;
+        for (i = 0; i < orders.length; i++) {
+            if (oid == keccak256(orders[i].orderId)) {
+               return -1;
+            }
+        }
+        return int256(i);
+    }
+
+
     function getVerifiedBuyerCount() public view returns (uint256){
         return verifiedBuyerCount;
     }

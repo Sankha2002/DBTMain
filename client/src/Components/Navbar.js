@@ -39,7 +39,7 @@ const Navbar = ({ user }) => {
                                     
                                         <Link
                                             className="navbar-brand"
-                                            to="/add-patient"
+                                            to="/order-track"
                                         >
                                             Track order
                                         </Link>
@@ -47,9 +47,9 @@ const Navbar = ({ user }) => {
                                     
                                         <Link
                                             className="navbar-brand"
-                                            to="/view-patient"
+                                            to="/view-orders-Farmers"
                                         >
-                                            Order Details
+                                            Placed Order Details
                                         </Link>
                                     
 
@@ -98,7 +98,7 @@ const Navbar = ({ user }) => {
                                     
                                         <Link
                                             className="navbar-brand"
-                                            to="/add-patient"
+                                            to="/search"
                                         >
                                            View Orders 
                                         </Link>
@@ -106,7 +106,7 @@ const Navbar = ({ user }) => {
                                     
                                         <Link
                                             className="navbar-brand"
-                                            to="/view-patient"
+                                            to="/view-orders-Wholeseller"
                                         >
                                             Placed Order Details
                                         </Link>
@@ -128,7 +128,7 @@ const Navbar = ({ user }) => {
                                     
                                         <Link
                                             className="navbar-brand"
-                                            to="/add-patient"
+                                            to="/view-orders"
                                         >
                                             Approve Order 
                                         </Link>
@@ -136,9 +136,9 @@ const Navbar = ({ user }) => {
                                     
                                         <Link
                                             className="navbar-brand"
-                                            to="/view-patient"
+                                            to="/view-orders-Manufacturer"
                                         >
-                                            Order Details
+                                            Accepted Order Details
                                         </Link>
                                     
 

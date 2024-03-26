@@ -14,7 +14,13 @@ import ViewOrg from "./Routes/ViewOrg.js";
 //import AddPatient from "./Components/Forms/AddPatient.js"
 
 import Patient from "./Routes/Patient.js"
-import RecordSearch from "./Routes/RecordSearch.js";
+import OrderSearch from "./Routes/OrderSearch.js";
+import OrderSearchManu from "./Routes/OrderSearchManu.js";
+import ViewOrdersFarmer from "./Routes/ViewOrderFarmer.js";
+import ViewOrdersWholeseller from "./Routes/ViewOrderWholeseller.js";
+import ViewOrdersManufacturer from "./Routes/ViewAcceptOrders.js";
+import OrderTrack from "./Routes/OrderTrack.js";
+
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -37,10 +43,13 @@ function App() {
                     </Route>
                      </Route>
                      <Route path="/placeorder" element={<PlaceOrder/>}/>
-                     <Route path="/search" element={<RecordSearch/>}/>
-                     <Route path="/view-patient" element={<Patient/>}/>
-                     
-                     
+                     <Route path="/search" element={<OrderSearch/>}/>
+                     <Route path="/view-orders" element={<OrderSearchManu/>}/>
+                     <Route path="/view-orders-Farmers" element={<ViewOrdersFarmer/>}/>
+                     <Route path="/view-orders-Wholeseller" element={<ViewOrdersWholeseller/>}/>
+                     <Route path="/view-orders-Manufacturer" element={<ViewOrdersManufacturer/>}/>
+                     <Route path="/order-track" element={<OrderTrack/>}/>
+
 
                      
                 <Route path="/login" element={<Login />} />

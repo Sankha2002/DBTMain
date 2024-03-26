@@ -74,39 +74,39 @@ const Request = ({ contract, web3 }) => {
         return data;
     };
 
-    const convertAsciiToHexBuyer = (org) => {
-        return {
-            id: org.id,
-            name: Web3.utils.asciiToHex(org["name"]),
-            aadharno: Web3.utils.asciiToHex(org["aadharno"]),
-            addr: Web3.utils.asciiToHex(org["addr"]),
-            con: Web3.utils.asciiToHex(org["con"]),
-            role: Web3.utils.asciiToHex(org["role"]),
-            typ: Web3.utils.asciiToHex(org["typ"]),
-            landdetails: Web3.utils.asciiToHex(org["landdetails"]),
-            fertilizersused: Web3.utils.asciiToHex(org["fertilizersused"]),
-            noofcrops: Web3.utils.asciiToHex(org["noofcrops"])
-        };
+    // const convertAsciiToHexBuyer = (org) => {
+    //     return {
+    //         id: org.id,
+    //         name: Web3.utils.asciiToHex(org["name"]),
+    //         aadharno: Web3.utils.asciiToHex(org["aadharno"]),
+    //         addr: Web3.utils.asciiToHex(org["addr"]),
+    //         con: Web3.utils.asciiToHex(org["con"]),
+    //         role: Web3.utils.asciiToHex(org["role"]),
+    //         typ: Web3.utils.asciiToHex(org["typ"]),
+    //         landdetails: Web3.utils.asciiToHex(org["landdetails"]),
+    //         fertilizersused: Web3.utils.asciiToHex(org["fertilizersused"]),
+    //         noofcrops: Web3.utils.asciiToHex(org["noofcrops"])
+    //     };
 
-    };
+    // };
 
 
-    const convertAsciiToHexSeller = (org) => {
-        return {
-            id: org.id,
-            name: Web3.utils.asciiToHex(org["name"]),
-            email: Web3.utils.asciiToHex(org["email"]),
-            con: Web3.utils.asciiToHex(org["con"]),
-            gstno: Web3.utils.asciiToHex(org["gstno"]),
-            addr: Web3.utils.asciiToHex(org["addr"]),
-            role: Web3.utils.asciiToHex(org["role"]),
-            typ: Web3.utils.asciiToHex(org["typ"])
-        };
-    };
+    // const convertAsciiToHexSeller = (org) => {
+    //     return {
+    //         id: org.id,
+    //         name: Web3.utils.asciiToHex(org["name"]),
+    //         email: Web3.utils.asciiToHex(org["email"]),
+    //         con: Web3.utils.asciiToHex(org["con"]),
+    //         gstno: Web3.utils.asciiToHex(org["gstno"]),
+    //         addr: Web3.utils.asciiToHex(org["addr"]),
+    //         role: Web3.utils.asciiToHex(org["role"]),
+    //         typ: Web3.utils.asciiToHex(org["typ"])
+    //     };
+    // };
 
     const approveBuyer = async (org) => {
-        console.log({org});
-        console.log(org);
+        // console.log({org});
+        // console.log(org);
         await approveOrg(org, "buyer");
     };
 
@@ -157,7 +157,7 @@ const Request = ({ contract, web3 }) => {
                                 prevState.filter((item) => item.id !== org.id)
                             );
                         }
-                        return "successful message";
+                        return "Successfully approved";
                     },
                 },
                 error: {
