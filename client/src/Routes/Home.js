@@ -65,7 +65,7 @@ const Home = () => {
                       Instagram
                   </span>
                 </FooterLink>
-                <FooterLink href="https://github.com/Sankha2002">
+                <FooterLink href="https://github.com/Sankha2002/DBTMain">
                   <span style={{ marginLeft: "5px" }}>
                       Github
                   </span>
