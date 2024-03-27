@@ -16,6 +16,7 @@ import ViewOrg from "./Routes/ViewOrg.js";
 import OrderSearch from "./Routes/OrderSearch.js";
 import OrderSearchManu from "./Routes/OrderSearchManu.js";
 import ViewOrdersFarmer from "./Routes/ViewOrderFarmer.js";
+import ViewOrdersRetailer from "./Routes/ViewOrderRetailer.js";
 import ViewOrdersWholeseller from "./Routes/ViewOrderWholeseller.js";
 import ViewOrdersManufacturer from "./Routes/ViewAcceptOrders.js";
 import OrderTrack from "./Routes/OrderTrack.js";
@@ -45,6 +46,7 @@ function App() {
                      <Route path="/search" element={<OrderSearch/>}/>
                      <Route path="/view-orders" element={<OrderSearchManu/>}/>
                      <Route path="/view-orders-Farmers" element={<ViewOrdersFarmer/>}/>
+                     <Route path="/view-orders-Retailer" element={<ViewOrdersRetailer/>}/>
                      <Route path="/view-orders-Wholeseller" element={<ViewOrdersWholeseller/>}/>
                      <Route path="/view-orders-Manufacturer" element={<ViewOrdersManufacturer/>}/>
                      <Route path="/order-track" element={<OrderTrack/>}/>

@@ -477,6 +477,7 @@ const mapStateToProps = (state) => {
     return {
         web3: state.web3Provider,
         orgContract: state.contractReducer,
+        user: state.userReducer
     };
 };
 

@@ -9,7 +9,10 @@
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
+    /* Adjust opacity here */
+    background-color: rgba(0, 0, 0, 0.7); /* Adjust the last value (0.7) for opacity */
 }
+
 
 .form-select {
     width: 200px; /* Adjust width as needed */

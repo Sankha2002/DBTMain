@@ -53,6 +53,7 @@ contract Org {
         bytes product;
         uint256 quantity;
         uint256 price;
+        bytes Rgstno;
         bytes  gstno;
         bytes Mgstno;
         bool fulfilled;
@@ -159,6 +160,7 @@ contract Org {
         bytes memory product,
         uint256 quantity,
         uint256 price, 
+        bytes memory Rgstno,
         bytes memory gstno
     ) public {
         Seller memory seller = getSeller();
@@ -183,6 +185,7 @@ contract Org {
             product: product,
             quantity: quantity,
             price: price,
+            Rgstno: Rgstno,
             gstno: gstno,
             Mgstno: "0x30",
             fulfilled:false

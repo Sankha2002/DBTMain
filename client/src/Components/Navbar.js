@@ -76,18 +76,13 @@ const Navbar = ({ user }) => {
                                     
                                         <Link
                                             className="navbar-brand"
-                                            to="/view-patient"
+                                            to="/view-orders-Retailer"
                                         >
-                                            Order Details
+                                            Placed Order Details
                                         </Link>
                                     
 
-                                        <Link
-                                            className="navbar-brand"
-                                            to="/search"
-                                        >
-                                            Payment
-                                        </Link>
+                                        
                                                           
                                 </>
                             )}
@@ -112,12 +107,6 @@ const Navbar = ({ user }) => {
                                         </Link>
                                     
 
-                                        <Link
-                                            className="navbar-brand"
-                                            to="/search"
-                                        >
-                                            Payment
-                                        </Link>
                                                           
                                 </>
                             )}
@@ -140,15 +129,7 @@ const Navbar = ({ user }) => {
                                         >
                                             Accepted Order Details
                                         </Link>
-                                    
-
-                                        <Link
-                                            className="navbar-brand"
-                                            to="/search"
-                                        >
-                                            Received Payment
-                                        </Link>
-                                                          
+                                             
                                 </>
                             )}
 

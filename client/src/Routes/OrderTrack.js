@@ -155,7 +155,7 @@ const Request = ({ contract, user }) => {
                         {finorders.map((finorder, index) => (
                             <tr key={index}>
                                 <td>{finorder.orderId}</td>
-                                <td>Order Request is accepted by Manufacturer and ready to dispatch</td>
+                                <td>Order Request is accepted and dispatched by Manufacturer</td>
                                
                                  {/* Display manufacturer GST No */}
                                 

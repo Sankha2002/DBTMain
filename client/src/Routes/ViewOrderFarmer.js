@@ -26,7 +26,7 @@ const Request = ({ contract, user }) => {
                 console.log({order});
                 console.log(user.con);
                 // Filter orders based on user's GST number
-                const userOrders = order.filter(o => o.contact === user.con && o.manufacturerGstno != '0x30');
+                const userOrders = order.filter(o => o.contact === user.con && o.manufacturerGstno != '0x30' && o.fulfilled == true);
 
                 setOrders(userOrders);
                 setLoading(false);
@@ -52,8 +52,10 @@ const Request = ({ contract, user }) => {
                 product: Web3.utils.hexToAscii(order.product),
                 quantity: order.quantity,
                 price: order.price,
+                rgst: Web3.utils.hexToAscii(order.Rgstno),
                 gstno: Web3.utils.hexToAscii(order.gstno),
                 manufacturerGstno:Web3.utils.hexToAscii(order.Mgstno),
+                fulfilled:order.fulfilled,
             });
         });
         console.log({data});
@@ -78,6 +80,7 @@ const Request = ({ contract, user }) => {
                                 <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
+                                <th>Retailer GST No</th>
                                 <th>Wholeseller GST No</th>
                                 <th>Manufacturer GST No</th> {/* New column for dropdown */}
                             </tr>
@@ -92,6 +95,7 @@ const Request = ({ contract, user }) => {
                                     <td>{order.product}</td>
                                     <td>{order.quantity}</td>
                                     <td>{order.price}</td>
+                                    <td>{order.rgst}</td>
                                     <td>{order.gstno}</td>
                                     <td>{order.manufacturerGstno}
                                     </td> {/* Display manufacturer GST No */}
